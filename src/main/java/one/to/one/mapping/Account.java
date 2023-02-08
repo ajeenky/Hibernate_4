@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,17 @@ public class Account {
 	@Column(name = "type")
 	private String ac_type;
 	
+//	bidirectional mapping where we provided annotation to the reference variable of employee class which will be an foreign key in Account table
+	@OneToOne (targetEntity = Employee.class)
+	private Employee emp;
+	
+//	we need getters and setters to perform the operation
+	public Employee getEmp() {
+		return emp;
+	}
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
 	public int getAc_id() {
 		return ac_id;
 	}
@@ -31,7 +44,7 @@ public class Account {
 	}
 	@Override
 	public String toString() {
-		return "Account [ac_id=" + ac_id + ", ac_type=" + ac_type + "]";
+		return "Account [ac_id=" + ac_id + ", ac_type=" + ac_type + ", emp=" + emp + "]";
 	}
 	
 }

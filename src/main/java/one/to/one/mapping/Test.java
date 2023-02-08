@@ -22,12 +22,14 @@ public class Test {
 		
 		Account account = new Account();
 		account.setAc_type("Gold");
-		
+		account.setEmp(employee);
 		employee.setAc(account);
-//		we used cascade on account reference variable thats why we only need to save the employee 
-//		account will be automatically saved
-//		session.save(account);
+		
+//		we are not using cascade thats why both of the objects needs to be saved
+//		if it was a unidirectional mapping then we had to save the object which Id will be used as a foreign key in the target table
+//		because its an bidirectional mapping sequence doesn't matter
 		session.save(employee);
+		session.save(account);
 		transaction.commit();
 		session.close();
 	}

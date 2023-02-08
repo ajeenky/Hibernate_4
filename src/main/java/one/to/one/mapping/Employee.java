@@ -20,11 +20,7 @@ public class Employee {
 	private String first_name;
 	@Column (name = "l_name")
 	private String last_name;
-	
-//	one to one mapping - one employee has one account
-//	target entity - the table(class) which we are joining the column as foreign key with its primary key 
-//	cascade - the operations(save, delete,update) we will perform on employee will be reflected on account
-	@OneToOne (targetEntity = Account.class, cascade = CascadeType.ALL)
+	@OneToOne (targetEntity = Account.class)
 	private Account ac;
 	
 	public Account getAc() {
@@ -51,4 +47,9 @@ public class Employee {
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", ac=" + ac + "]";
+	}
+	
 }
